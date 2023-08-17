@@ -14,7 +14,7 @@ export async function run(provider: NetworkProvider) {
         }),
         nftItemCode: await compile("NftItem"),
         royaltyParams: {
-            royaltyFactor: 10,
+            royaltyFactor: 3,
             royaltyBase: 100,
             royaltyAddress: provider.sender().address as Address
         }
