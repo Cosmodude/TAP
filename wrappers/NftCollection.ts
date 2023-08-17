@@ -143,8 +143,4 @@ export class NftCollection implements Contract {
         };
     }
 
-    async getNextItemIndex(provider: ContractProvider): Promise<bigint>{
-        const collection_data = await provider.get("collection_data", []);
-        return collection_data.stack.readBigNumber(); 
-    }
 }

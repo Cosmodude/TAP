@@ -9,12 +9,12 @@ export async function run(provider: NetworkProvider) {
         ownerAddress: myAddress, 
         nextItemIndex: 0,
         collectionContent: buildNftCollectionContentCell({
-            collectionContent: 'https://raw.githubusercontent.com/Cosmodude/Invincible_LS/main/sampleMetadata.json',  // collection metadata
-            commonContent: 'https://raw.githubusercontent.com/Cosmodude/Invincible_LS/main/sampleMetadata.json'     // for nft items 
+            collectionContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleCollectionMetadata.json',  // collection metadata
+            commonContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json'     // for nft items 
         }),
         nftItemCode: await compile("NftItem"),
         royaltyParams: {
-            royaltyFactor: 5,
+            royaltyFactor: 10,
             royaltyBase: 100,
             royaltyAddress: provider.sender().address as Address
         }

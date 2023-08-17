@@ -1,5 +1,6 @@
 {
     "name": "Collectiondata",
     "description": "This is collection data",
-    "marketplace": "getgems.io"
+    "marketplace": "getgems.io",
+    "image": "https://hipo.finance/hton.png"
 }
