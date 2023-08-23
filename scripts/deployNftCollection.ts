@@ -11,11 +11,11 @@ export async function run(provider: NetworkProvider) {
         nextItemIndex: 0,
         collectionContent: buildCollectionContentCell({
             collectionContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleCollectionMetadata.json',  // collection metadata
-            commonContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json'     // for nft items 
+            commonContent: ' '     // for nft items 
         }),
         nftItemCode: await compile("NftItem"),
         royaltyParams: {
-            royaltyFactor: 3,
+            royaltyFactor: 50,
             royaltyBase: 100,
             royaltyAddress: provider.sender().address as Address
         }
