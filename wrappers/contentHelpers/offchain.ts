@@ -88,8 +88,7 @@ export function buildCollectionContentCell(data: NftCollectionContent): Cell {
 
   let collectionContent = encodeOffChainContent(data.collectionContent);
 
-  let commonContent = beginCell();
-  commonContent.storeStringTail(data.commonContent);
+  let commonContent = encodeOffChainContent(data.commonContent);
 
   contentCell.storeRef(collectionContent);
   contentCell.storeRef(commonContent);
