@@ -1,5 +1,6 @@
 import { Address, beginCell, toNano } from 'ton-core';
-import { NftCollection, buildNftCollectionContentCell, NftCollectionContent } from '../wrappers/NftCollection';
+import { buildCollectionContentCell} from '../wrappers/contentHelpers/offchain';
+import { NftCollection } from '../wrappers/NftCollection';
 import { compile, NetworkProvider } from '@ton-community/blueprint';
 
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
@@ -8,7 +9,7 @@ export async function run(provider: NetworkProvider) {
     const nftCollection = provider.open(NftCollection.createFromConfig({
         ownerAddress: myAddress, 
         nextItemIndex: 0,
-        collectionContent: buildNftCollectionContentCell({
+        collectionContent: buildCollectionContentCell({
             collectionContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleCollectionMetadata.json',  // collection metadata
             commonContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json'     // for nft items 
         }),
