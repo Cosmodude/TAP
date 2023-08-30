@@ -15,7 +15,7 @@ export async function run(provider: NetworkProvider, args: string[]) {
     const mint = await nftCollection.sendMintNft(provider.sender(),{
         value: toNano("1"),  // 0.015 for gas ~ 0.02
         amount: toNano("0.014"),  // for gas + 0.01 of storage (usually 0.05)
-        itemIndex: 1,
+        itemIndex: 2,
         itemOwnerAddress: myAddress,
         itemContent: "https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json",
         queryId: Date.now()
