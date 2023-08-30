@@ -8,7 +8,7 @@ import {
     Sender, 
     SendMode, 
 } from 'ton-core';
-import { decodeOffChainContent } from './contentHelpers/offchain';
+import { buildCollectionContentCell, decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
 
 export type RoyaltyParams = {
     royaltyFactor: number;
@@ -72,8 +72,7 @@ export class NftCollection implements Contract {
             amount: bigint;
         }
         ) {
-            const nftContent = beginCell();
-            nftContent.storeBuffer(Buffer.from(opts.itemContent));
+            const nftContent = encodeOffChainContent(opts.itemContent);
             
             const nftMessage = beginCell();
             nftMessage.storeAddress(opts.itemOwnerAddress)
