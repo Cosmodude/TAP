@@ -63,7 +63,8 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
             .store_coins(amount)  ;; value
             .store_uint(4 + 2 + 1, 1 + 4 + 4 + 64 + 32 + 1 + 1 + 1)
             .store_ref(state_init)
-            .store_ref(sbt_content);
+            .store_ref(sbt_content)
+            .store_slice(my_address());
   send_raw_message(msg.end_cell(), 1); ;; pay transfer fees separately, revert on errors
 }
 
