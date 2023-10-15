@@ -1,8 +1,9 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox';
 import { Cell, toNano, beginCell, Address } from 'ton-core';
-import { NftCollection, buildNftCollectionContentCell} from '../wrappers/NftCollection';
+import { NftCollection } from '../wrappers/NftCollection';
 import '@ton-community/test-utils';
 import { compile } from '@ton-community/blueprint';
+import { buildCollectionContentCell} from '../wrappers/contentHelpers/offchain';
 
 describe('NftCollection', () => {
     let code: Cell;
@@ -27,7 +28,7 @@ describe('NftCollection', () => {
         nftCollection = blockchain.openContract(NftCollection.createFromConfig({
             ownerAddress: deployer.address,
             nextItemIndex: 0,
-            collectionContent: buildNftCollectionContentCell({
+            collectionContent: buildCollectionContentCell({
                 collectionContent: 'https://raw.githubusercontent.com/Cosmodude/Invincible_LS/main/sampleMetadata.json',
                 commonContent: 'https://github.com/Cosmodude/Invincible_LS/blob/main/sampleMetadata.json'
             }),
