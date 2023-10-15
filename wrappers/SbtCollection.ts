@@ -9,12 +9,20 @@ import {
     SendMode, 
 } from 'ton-core';
 import { buildCollectionContentCell, decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
+let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
+
+export type RoyaltyParams = {
+    royaltyFactor: number;
+    royaltyBase: number;
+    royaltyAddress: Address;
+};
 
 export type SbtCollectionConfig = {
     ownerAddress: Address;
     nextItemIndex: number;
     collectionContent: Cell;
     sbtItemCode: Cell;
+    royaltyParams: RoyaltyParams;
 };
 
 export function sbtCollectionConfigToCell(config: SbtCollectionConfig): Cell {
@@ -23,6 +31,12 @@ export function sbtCollectionConfigToCell(config: SbtCollectionConfig): Cell {
         .storeUint(config.nextItemIndex, 64)
         .storeRef(config.collectionContent)
         .storeRef(config.sbtItemCode)
+        .storeRef(
+            beginCell()
+                .storeUint(config.royaltyParams.royaltyFactor, 16)
+                .storeUint(config.royaltyParams.royaltyBase, 16)
+                .storeAddress(config.royaltyParams.royaltyAddress)
+        )
         .endCell();
 }
 
@@ -54,6 +68,7 @@ export class SbtCollection implements Contract {
             itemIndex: number;
             itemOwnerAddress: Address;
             itemContent: string;
+            authorityAddress: Address;
             amount: bigint;
         }
         ) {
@@ -62,6 +77,8 @@ export class SbtCollection implements Contract {
             const sbtMessage = beginCell();
             sbtMessage.storeAddress(opts.itemOwnerAddress)
             sbtMessage.storeRef(sbtContent)
+            sbtMessage.storeAddress(opts.authorityAddress)
+
             await provider.internal(via, {
                 value: opts.value,
                 sendMode: SendMode.PAY_GAS_SEPARATELY,
@@ -74,4 +91,18 @@ export class SbtCollection implements Contract {
                 .endCell()
             })
         }
+
+    async getCollectionData(provider: ContractProvider): Promise<{nextItemId: number, ownerAddress: Address, collectionContent: string}>{
+        const collectionData = await provider.get("get_collection_data", []);
+        const stack = await collectionData.stack;
+        let nextItem: bigint = stack.readBigNumber();
+        let collectionContent: Cell = await stack.readCell();
+        let ownerAddress: Address = await stack.readAddress();
+        return {
+            nextItemId: Number(nextItem), 
+            ownerAddress: ownerAddress,
+            collectionContent: decodeOffChainContent(collectionContent),
+        };
+    }
+        
 }

@@ -14,7 +14,11 @@ export async function run(provider: NetworkProvider) {
         commonContent: ' '     // for sbt items 
     }),
     sbtItemCode: await compile("SbtItem"),
-
+    royaltyParams: {
+        royaltyFactor: 15,
+        royaltyBase: 100,
+        royaltyAddress: myAddress
+    }
     },await compile('SbtCollection')));
 
     await sbtCollection.sendDeploy(provider.sender(), toNano('0.05'));
