@@ -51,7 +51,7 @@ describe('NftCollection', () => {
             success: true,
         });
 
-        nftCollection.getCollectionData();
+        console.log(await nftCollection.getCollectionData());
        
         let collectionData = await nftCollection.getCollectionData();
         expect(collectionData.ownerAddress).toEqualAddress(deployer.address);
