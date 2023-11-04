@@ -10,7 +10,7 @@ export async function run(provider: NetworkProvider) {
     ownerAddress: myAddress,
     nextItemIndex: 0,
     collectionContent: buildCollectionContentCell({
-        collectionContent: '',  // collection metadata
+        collectionContent: 'https://raw.githubusercontent.com/Cosmodude/TAP/main/Hack-Ton-Berfest_collection.json',  // collection metadata
         commonContent: ' '     // for sbt items 
     }),
     sbtItemCode: await compile("SbtItem"),
