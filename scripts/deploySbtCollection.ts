@@ -10,7 +10,7 @@ export async function run(provider: NetworkProvider) {
     ownerAddress: myAddress,
     nextItemIndex: 0,
     collectionContent: buildCollectionContentCell({
-        collectionContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleCollectionMetadata.json',  // collection metadata
+        collectionContent: '',  // collection metadata
         commonContent: ' '     // for sbt items 
     }),
     sbtItemCode: await compile("SbtItem"),
