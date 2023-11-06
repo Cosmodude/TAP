@@ -1,11 +1,5 @@
 {
     "name": "Hack-TON-Berfest 2023 Winner",
-    "description": "Reward for contribution in Hack-TON-Berfest",
-    "image": "https://ipfs.io/ipfs/bafybeih47llh4rvifrj6dk2ncsysbg3bhffkybdfw673lhehycvtkwjsrm",
-    "content_url": "https://ipfs.io/ipfs/bafybeicttdff7w4ejcxfumkolc6mzzd6leif7mxas3upnb3uw5xw7cxxha",
-    "content_type":"video/mp4",
-    "social_links": "https://github.com/MKdir98",
-    "marketplace": "getgems.io",
     "atributes": [
         {
             "trait_type": "PR #1",
@@ -15,5 +9,10 @@
             "trait_type": "PR #2",
             "value": "https://github.com/ton-community/ton-docs/pull/395"
         }
-    ]
+    ],
+    "description": "Reward for contribution in Hack-TON-Berfest",
+    "image": "https://ipfs.io/ipfs/bafybeih47llh4rvifrj6dk2ncsysbg3bhffkybdfw673lhehycvtkwjsrm",
+    "content_url": "https://ipfs.io/ipfs/bafybeicttdff7w4ejcxfumkolc6mzzd6leif7mxas3upnb3uw5xw7cxxha",
+    "content_type":"video/mp4",
+    "social_links": "https://github.com/MKdir98"
 }
