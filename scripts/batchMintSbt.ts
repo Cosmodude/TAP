@@ -20,8 +20,8 @@ export async function run(provider: NetworkProvider, args: string[]) {
     const mint = await sbtCollection.sendBatchMintSbt(provider.sender(),{
         value: toNano("0.03"),  // 0.015 for gas ~ 0.02
         amount: toNano("0.014"),  // for gas + 0.01 of storage (usually 0.05)
-        itemOwnerAddresses: await CreateJsonsGetAddreses(),
-        itemContent:["hjf"],
+        itemOwnerAddresses: [myAddress, myAddress],
+        itemsContent:["https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json", "https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json"],
         authorityAddress: myAddress,
         queryId: Date.now()
     });

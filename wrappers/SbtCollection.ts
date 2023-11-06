@@ -97,7 +97,7 @@ export class SbtCollection implements Contract {
             opts: {
                 value: bigint;
                 queryId: number;
-                deployList: Dictionary<bigint, Cell>;
+                //deployList: Dictionary<bigint, Cell>;
                 itemOwnerAddresses: Address[];
                 itemsContent: string[];
                 authorityAddress: Address;
@@ -118,15 +118,15 @@ export class SbtCollection implements Contract {
                         .storeRef(sbtMessage)
                     .endCell()
                     
-                    deployList.set(i,dictElement)
+                    deployList.set(BigInt(i),dictElement)
                 }
                 await provider.internal(via, {
                     value: opts.value,
                     sendMode: SendMode.PAY_GAS_SEPARATELY,
                     body: beginCell()
-                        .storeUint(1,32)  // operation
+                        .storeUint(2,32)  // operation
                         .storeUint(opts.queryId,64)
-                        .storeRef(beginCell().storeDictDirect(deployList))    
+                        .storeRef(beginCell().storeDictDirect(deployList, Dictionary.Keys.BigUint(256), Dictionary.Values.Cell()))    
                     .endCell()
                 })
             }
