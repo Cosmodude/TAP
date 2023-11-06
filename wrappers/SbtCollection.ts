@@ -98,7 +98,7 @@ export class SbtCollection implements Contract {
                 value: bigint;
                 queryId: number;
                 deployList: Dictionary<bigint, Cell>;
-                itemOwnerAddress: Address;
+                itemOwnerAddresses: Address[];
                 itemsContent: string[];
                 authorityAddress: Address;
                 amount: bigint;
@@ -109,7 +109,7 @@ export class SbtCollection implements Contract {
                     const sbtContent = encodeOffChainContent(opts.itemsContent[i]);
                     
                     const sbtMessage = beginCell();
-                    sbtMessage.storeAddress(opts.itemOwnerAddress)
+                    sbtMessage.storeAddress(opts.itemOwnerAddresses[i])
                     sbtMessage.storeRef(sbtContent)
                     sbtMessage.storeAddress(opts.authorityAddress)
 
