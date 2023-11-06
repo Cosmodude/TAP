@@ -4,10 +4,5 @@
     "image": "ipfs://bafybeih47llh4rvifrj6dk2ncsysbg3bhffkybdfw673lhehycvtkwjsrm",
     "content_url": "ipfs://bafybeicttdff7w4ejcxfumkolc6mzzd6leif7mxas3upnb3uw5xw7cxxha",
     "content_type":"video/mp4",
-    "attributes": [
-    {
-      "trait_type": "Link",
-      "value": ""
-    }
-    ]
+    "social_links": "https://github.com/MKdir98"
 }
