@@ -105,7 +105,7 @@ export class SbtCollection implements Contract {
             }
             ) {
                 let deployList = Dictionary.empty();
-                for(let i = 0; i<opts.itemsContent.length; i++){
+                for(let i = 0; i < opts.itemsContent.length; i++){
                     const sbtContent = encodeOffChainContent(opts.itemsContent[i]);
                     
                     const sbtMessage = beginCell();
@@ -118,7 +118,7 @@ export class SbtCollection implements Contract {
                         .storeRef(sbtMessage)
                     .endCell()
                     
-                    deployList.set(BigInt(i),dictElement)
+                    deployList.set(i,dictElement)
                 }
                 await provider.internal(via, {
                     value: opts.value,
@@ -126,7 +126,7 @@ export class SbtCollection implements Contract {
                     body: beginCell()
                         .storeUint(2,32)  // operation
                         .storeUint(opts.queryId,64)
-                        .storeRef(beginCell().storeDictDirect(deployList, Dictionary.Keys.BigUint(256), Dictionary.Values.Cell()))    
+                        .storeDict(deployList, Dictionary.Keys.Uint(64), Dictionary.Values.Cell())  
                     .endCell()
                 })
             }
