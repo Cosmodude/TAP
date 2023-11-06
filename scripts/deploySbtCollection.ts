@@ -15,7 +15,7 @@ export async function run(provider: NetworkProvider) {
     }),
     sbtItemCode: await compile("SbtItem"),
     royaltyParams: {
-        royaltyFactor: 15,
+        royaltyFactor: Math.floor(Math.random() * 100),
         royaltyBase: 100,
         royaltyAddress: myAddress
     }

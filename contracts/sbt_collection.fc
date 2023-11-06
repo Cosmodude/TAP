@@ -169,7 +169,7 @@ cell get_nft_content(int index, cell individual_nft_content) method_id {  ;; ???
   slice common_content = cs~load_ref().begin_parse();
   return (begin_cell()
                       .store_uint(1, 8) ;; offchain tag https://github.com/ton-blockchain/TIPs/issues/64
-                      .store_slice(common_content)
-                      .store_ref(individual_nft_content)
+                      ;;.store_slice(common_content)
+                      .store_rslice(individual_nft_content.begin_parse())
           .end_cell());
 }
