@@ -47,10 +47,10 @@ describe('SbtCollection', () => {
             deploy: true,
             success: true,
         });
-        console.log(deployResult.events)
+        //console.log(deployResult.events)
 
         const data = await sbtCollection.getCollectionData();
-        console.log(data)
+        //console.log(data)
     });
 
     it('should deploy', async () => {
@@ -69,8 +69,22 @@ describe('SbtCollection', () => {
             authorityAddress: myAddress,
             queryId: Date.now()
         });
-        console.log("Mint: ", mint.events)
+        expect(mint.events.at(-1)?.type).toMatch("account_created");
+        //console.log("Mint: ", mint.events)
+
     });
 
+    it('should batch mint SBT items', async () => {
+
+        const mint = await sbtCollection.sendBatchMintSbt(deployer.getSender(), {
+            value: toNano("0.014") * 2n + toNano("0.03"),  // 0.015 for gas ~ 0.02
+            amount: toNano("0.014"),  // for gas + 0.01 of storage 
+            itemOwnerAddresses: [user.address, user.address],
+            itemsContent: ["https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json","https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json"], 
+            authorityAddress: myAddress,
+            queryId: Date.now()
+        });
+        console.log(mint.transactions)
+    })
 
 });
