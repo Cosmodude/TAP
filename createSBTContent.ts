@@ -1,12 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { Address } from 'ton-core';
+
 
 // Define the input and output file paths
 const inputFilePath = 'input.txt';
 const outputFolderPath = 'HackTonBerFestSbt';
 const addressesFilePath = 'HackTonBerFestSbt/addresses.txt';
 
-async function CreateJsonsReturnAddreses(): Promise<string[]>{
+export async function CreateJsonsGetAddreses(): Promise<Address[]>{
     // Create the output folder if it doesn't exist
     if (!fs.existsSync(outputFolderPath)) {
     fs.mkdirSync(outputFolderPath);
@@ -26,13 +28,13 @@ async function CreateJsonsReturnAddreses(): Promise<string[]>{
 
     // Read the input file and process each line
     const inputLines = fs.readFileSync(inputFilePath, 'utf-8').split('\n');
-    const addresses: string[] = [];
+    const addresses: Address[] = [];
 
     for (const line of inputLines) {
     const [address, link] = line.trim().split(',');
     if (address && link) {
         // Create a JSON file for each address
-        addresses.push(address);
+        addresses.push(Address.parse(address));
         const jsonContent = generateJson(link);
         const jsonFilePath = path.join(outputFolderPath, `${address}.json`);
         fs.writeFileSync(jsonFilePath, JSON.stringify(jsonContent, null, 4));
