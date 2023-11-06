@@ -8,7 +8,7 @@ const inputFilePath = 'input.txt';
 const outputFolderPath = 'HackTonBerFestSbt';
 const addressesFilePath = 'HackTonBerFestSbt/addresses.txt';
 
-export async function CreateJsonsGetAddreses(): Promise<Address[]>{
+export async function CreateJsonsGetAddreses(): Promise<[Address[], []]>{
     // Create the output folder if it doesn't exist
     if (!fs.existsSync(outputFolderPath)) {
     fs.mkdirSync(outputFolderPath);
@@ -29,13 +29,15 @@ export async function CreateJsonsGetAddreses(): Promise<Address[]>{
     // Read the input file and process each line
     const inputLines = fs.readFileSync(inputFilePath, 'utf-8').split('\n');
     const addresses: Address[] = [];
+    const jsonContent: any = [];
+
 
     for (const line of inputLines) {
     const [address, link] = line.trim().split(',');
     if (address && link) {
         // Create a JSON file for each address
         addresses.push(Address.parse(address));
-        const jsonContent = generateJson(link);
+        jsonContent.push(generateJson(link));
         const jsonFilePath = path.join(outputFolderPath, `${address}.json`);
         fs.writeFileSync(jsonFilePath, JSON.stringify(jsonContent, null, 4));
     }
@@ -45,5 +47,5 @@ export async function CreateJsonsGetAddreses(): Promise<Address[]>{
     fs.writeFileSync(addressesFilePath, addresses.join('\n'));
 
     console.log('JSON files created in the output folder, and addresses file created.')
-    return addresses;
+    return [addresses, jsonContent];
 }
