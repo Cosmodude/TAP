@@ -1,6 +1,12 @@
 {
-    "name": "Ton Demo Day",
-    "description": "Owner of this NFT participated in Ton Demo day in August 2023",
-    "marketplace": "getgems.io",
-    "image": "ipfs://bafybeiaqfgvcx57xam6dvo3js7tznc3v5zh4edbiln4bjdzdn4rj2m3jxq"
+    "name": "Hack-TON-Berfest 2023 Winner",
+    "description": "Reward for participation at ",
+    "image": "ipfs://bafybeih47llh4rvifrj6dk2ncsysbg3bhffkybdfw673lhehycvtkwjsrm",
+    "content_url": "ipfs://bafybeihjoq32cmzpz6mb3hh7wisgzv2sf2h3pr445tg4fqmifpwcrdsjqq",
+    "attributes": [
+    {
+      "trait_type": "Link",
+      "value": ""
+    }
+    ]
 }
