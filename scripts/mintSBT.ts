@@ -17,7 +17,7 @@ export async function run(provider: NetworkProvider, args: string[]) {
         amount: toNano("0.014"),  // for gas + 0.01 of storage (usually 0.05)
         itemIndex: 0,
         itemOwnerAddress: myAddress,
-        itemContent: "https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleItemMetadata.json",
+        itemContent: "",
         authorityAddress: myAddress,
         queryId: Date.now()
     });
