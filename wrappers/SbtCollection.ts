@@ -5,6 +5,7 @@ import {
     Contract, 
     contractAddress, 
     ContractProvider, 
+    Dictionary, 
     Sender, 
     SendMode, 
 } from 'ton-core';
@@ -92,12 +93,50 @@ export class SbtCollection implements Contract {
             })
         }
 
+        async sendBatchMintSbt(provider: ContractProvider, via: Sender,
+            opts: {
+                value: bigint;
+                queryId: number;
+                deployList: Dictionary<bigint, Cell>;
+                itemOwnerAddress: Address;
+                itemsContent: string[];
+                authorityAddress: Address;
+                amount: bigint;
+            }
+            ) {
+                let deployList = Dictionary.empty();
+                for(let i = 0; i<opts.itemsContent.length; i++){
+                    const sbtContent = encodeOffChainContent(opts.itemsContent[i]);
+                    
+                    const sbtMessage = beginCell();
+                    sbtMessage.storeAddress(opts.itemOwnerAddress)
+                    sbtMessage.storeRef(sbtContent)
+                    sbtMessage.storeAddress(opts.authorityAddress)
+
+                    let dictElement: Cell = beginCell()
+                        .storeCoins(opts.amount)
+                        .storeRef(sbtMessage)
+                    .endCell()
+                    
+                    deployList.set(i,dictElement)
+                }
+                await provider.internal(via, {
+                    value: opts.value,
+                    sendMode: SendMode.PAY_GAS_SEPARATELY,
+                    body: beginCell()
+                        .storeUint(1,32)  // operation
+                        .storeUint(opts.queryId,64)
+                        .storeRef(beginCell().storeDictDirect(deployList))    
+                    .endCell()
+                })
+            }
+
     async getCollectionData(provider: ContractProvider): Promise<{nextItemId: number, ownerAddress: Address, collectionContent: string}>{
         const collectionData = await provider.get("get_collection_data", []);
-        const stack = await collectionData.stack;
+        const stack = collectionData.stack;
         let nextItem: bigint = stack.readBigNumber();
-        let collectionContent: Cell = await stack.readCell();
-        let ownerAddress: Address = await stack.readAddress();
+        let collectionContent: Cell = stack.readCell();
+        let ownerAddress: Address = stack.readAddress();
         return {
             nextItemId: Number(nextItem), 
             ownerAddress: ownerAddress,
