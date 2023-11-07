@@ -1,0 +1,124 @@
+"https://github.com/ton-community/ton-docs/pull/376
+            https://github.com/ProgramCrafter/MulDEX/pull/6
+            https://github.com/HipoFinance/contract/pull/7
+            https://github.com/ton-community/gamefi-sdk/pull/5"
+"https://github.com/ton-community/ton-docs/pull/406
+            https://github.com/ton-community/ton-docs/pull/393"
+"https://github.com/ton-community/ton-docs/pull/405
+            https://github.com/ton-community/ton-docs/pull/404
+            https://github.com/ton-community/ton-docs/pull/396
+            https://github.com/ton-community/ton-docs/pull/397"
+"https://github.com/ton-community/ton-docs/pull/401
+            https://github.com/ton-community/ton-docs/pull/398
+            https://github.com/ton-community/ton-docs/pull/387
+            https://github.com/ton-community/ton-docs/pull/374"
+"https://github.com/ton-community/ton-docs/pull/399
+            https://github.com/ton-community/ton-docs/pull/389"
+"https://github.com/ton-community/ton-docs/pull/378
+            https://github.com/ton-community/tutorials/pull/50
+            https://github.com/ton-community/tutorials/pull/47
+            https://github.com/ton-community/tutorials/pull/46
+            https://github.com/ton-community/tutorials/pull/43
+            https://github.com/alefmanvladimir/nft_workshop/pull/6
+            https://github.com/ton-community/hack-ton-berfest2023/pull/5
+            https://github.com/ton-community/awesome-ton/pull/60"
+"https://github.com/ton-community/ton-docs/pull/379
+            https://github.com/tact-lang/tact-docs/pull/24
+            https://github.com/tact-lang/tact-by-example/pull/16"
+"https://github.com/ton-org/blueprint/pull/70
+            https://github.com/tact-lang/tact-cookbook/pull/40
+            https://github.com/alirezatabatabaeian/TON-MathLib/pull/25
+            https://github.com/HipoFinance/contract/pull/6
+            https://github.com/ton-community/gamefi-sdk/pull/4"
+"https://github.com/ton-org/blueprint/pull/71
+            https://github.com/ton-org/create-ton/pull/11"
+"https://github.com/tact-lang/tact/pull/76
+            https://github.com/getgems-community-tact/nft-template-editable/pull/8"
+
+"https://github.com/tact-lang/tact/pull/65
+            https://github.com/tact-lang/tact-cookbook/pull/25
+            https://github.com/tact-lang/tact-cookbook/pull/23
+            https://github.com/tact-lang/tact-docs/pull/22"
+
+"https://github.com/tact-lang/tact-cookbook/pull/50
+            https://github.com/tact-lang/tact-cookbook/pull/28
+            https://github.com/alefmanvladimir/nft_workshop/pull/12
+            https://github.com/ton-community/hack-ton-berfest2023/pull/9"
+"https://github.com/tact-lang/tact-cookbook/pull/45
+            https://github.com/tact-lang/tact-cookbook/pull/42
+            https://github.com/tact-lang/tact-cookbook/pull/41"
+"https://github.com/tact-lang/tact-cookbook/pull/30
+            https://github.com/tact-lang/tact-cookbook/pull/22
+            https://github.com/alirezatabatabaeian/TON-MathLib/pull/22
+            https://github.com/getgems-community-tact/nft-template-editable/pull/6
+            https://github.com/getgems-community-tact/nft-template-editable/pull/7
+            https://github.com/getgems-community-tact/nft-template-editable/pull/5
+            https://github.com/SHEDEVERstudio/SHEDGEMS/pull/9"
+"https://github.com/tact-lang/tact-cookbook/pull/35
+            https://github.com/tact-lang/tact-cookbook/pull/34"
+
+"https://github.com/tact-lang/tact-cookbook/pull/29
+            https://github.com/alefmanvladimir/nft_workshop/pull/4
+            https://github.com/alefmanvladimir/HACK-TON-BERFEST-2023/pull/29
+            https://github.com/alefmanvladimir/HACK-TON-BERFEST-2023/pull/27"
+"https://github.com/tact-lang/tact-cookbook/pull/7
+            https://github.com/alefmanvladimir/HACK-TON-BERFEST-2023/pull/15"
+
+"https://github.com/theopenlaunch/BE/pull/6
+            https://github.com/theopenlaunch/BE/pull/8
+            https://github.com/theopenlaunch/FE/pull/9"
+
+"https://github.com/yungwine/TonTools/pull/12
+            https://github.com/yungwine/TonTools/pull/11"
+"https://github.com/alirezatabatabaeian/TON-MathLib/pull/30
+            https://github.com/ton-community/hack-ton-berfest2023/pull/13"
+"https://github.com/alirezatabatabaeian/TON-MathLib/pull/21
+            https://github.com/getgems-community-tact/nft-template-in-tact/pull/2
+            https://github.com/getgems-community-tact/sbt-template/pull/5
+            https://github.com/ProgramCrafter/MulDEX/pull/5
+            https://github.com/getgems-community-tact/nft-marketplace/pull/15"
+
+"https://github.com/alefmanvladimir/nft_workshop/pull/9
+            https://github.com/ton-community/hack-ton-berfest2023/pull/10"
+"https://github.com/alefmanvladimir/nft_workshop/pull/8
+            https://github.com/alefmanvladimir/HACK-TON-BERFEST-2023/pull/8"
+"https://github.com/alefmanvladimir/nft_workshop/pull/7
+            https://github.com/ton-community/hack-ton-berfest2023/pull/8"
+" https://github.com/alefmanvladimir/nft_workshop/pull/5
+            https://github.com/ton-community/hack-ton-berfest2023/pull/6"
+"https://github.com/alefmanvladimir/nft_workshop/pull/2
+            https://github.com/ton-community/hack-ton-berfest2023/pull/3
+            https://github.com/it-beard/itbeard-in-ton/pull/1"
+"https://github.com/alefmanvladimir/nft_workshop/pull/3
+            https://github.com/ton-community/hack-ton-berfest2023/pull/2
+            https://github.com/alefmanvladimir/BigFiles/pull/26
+            https://github.com/alefmanvladimir/BigFiles/pull/3
+            https://github.com/alefmanvladimir/BigFiles/pull/11
+            https://github.com/alefmanvladimir/BigFiles/pull/19
+            https://github.com/alefmanvladimir/BigFiles/pull/23
+            https://github.com/alefmanvladimir/BigFiles/pull/20
+            https://github.com/alefmanvladimir/BigFiles/pull/8
+            https://github.com/ton-developers/ton-validators-map/pull/5"
+"https://github.com/alefmanvladimir/HACK-TON-BERFEST-2023/pull/30
+            https://github.com/alefmanvladimir/HACK-TON-BERFEST-2023/pull/3
+            https://github.com/ProgramCrafter/MulDEX/pull/7
+            https://github.com/ProgramCrafter/rusty-gate/pull/4
+            https://github.com/ProgramCrafter/ton-qr-deployer/pull/5
+            https://github.com/ProgramCrafter/ton-qr-deployer/pull/4"
+"https://github.com/alefmanvladimir/BigFiles/pull/29
+            https://github.com/alefmanvladimir/BigFiles/pull/27
+            https://github.com/alefmanvladimir/BigFiles/pull/21
+            https://github.com/alefmanvladimir/BigFiles/pull/15
+            https://github.com/alefmanvladimir/BigFiles/pull/12
+            https://github.com/alefmanvladimir/BigFiles/pull/7"
+"https://github.com/roma-marshall/ton-explorer/pull/15
+            https://github.com/roma-marshall/ton-explorer/pull/13
+            https://github.com/roma-marshall/ton-explorer/pull/12
+            https://github.com/roma-marshall/ton-explorer/pull/11
+            https://github.com/roma-marshall/ton-explorer/pull/10
+            https://github.com/roma-marshall/ton-explorer/pull/9
+            https://github.com/roma-marshall/ton-explorer/pull/8
+            https://github.com/roma-marshall/ton-explorer/pull/7
+            https://github.com/roma-marshall/ton-explorer/pull/6"
+
+
