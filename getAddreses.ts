@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 
-const filePath = 'addresses.txt'; // Replace with the path to your addresses file
+const addressesPath = 'addresses.txt'; // Replace with the path to your addresses file
 
-function readAddressesFromFile(filePath: string): string[] {
+export function readAddressesFromFile(filePath: string): string[] {
   try {
     const data = fs.readFileSync(filePath, 'utf8');
     const addresses = data.split('\n').map((line) => line.trim()).filter((line) => line !== '');
@@ -13,5 +13,5 @@ function readAddressesFromFile(filePath: string): string[] {
   }
 }
 
-const addresses = readAddressesFromFile(filePath);
-console.log(addresses.length);
+// const addresses = readAddressesFromFile(filePath);
+// console.log(addresses.length);

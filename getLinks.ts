@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 
-const filePath = 'links.txt'; // Replace with the path to your links file
+const linksPath = 'links.txt'; // Replace with the path to your links file
 
-function readLinksFromFile(filePath: string): string[][] {
+export function readLinksFromFile(filePath: string): string[][] {
   try {
     const data = fs.readFileSync(filePath, 'utf8');
     const groups = data.split('"\n"').map((group) => group.trim().split('\n'));
@@ -13,5 +13,5 @@ function readLinksFromFile(filePath: string): string[][] {
   }
 }
 
-const links = readLinksFromFile(filePath);
-console.log(links);
+// const links = readLinksFromFile(filePath);
+// console.log(links);
