@@ -17,7 +17,7 @@ export async function run(provider: NetworkProvider, args: string[]) {
         value: toNano("0.032"),  // 0.018 for gas ~ 0.02
         amount: toNano("0.014"),  // for gas + 0.01 of storage (usually 0.05)
         itemIndex: 0,// needs to be deleted 
-        itemOwnerAddress: MykhailAddress,
+        itemOwnerAddress: myAddress,
         itemContent: "https://raw.githubusercontent.com/Cosmodude/TAP/main/sampleItemMetadata.json",
         authorityAddress: myAddress,
         queryId: Date.now()

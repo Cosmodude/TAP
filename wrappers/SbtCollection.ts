@@ -9,7 +9,7 @@ import {
     Sender, 
     SendMode, 
 } from 'ton-core';
-import { buildCollectionContentCell, decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
+import { decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
 
 export type RoyaltyParams = {
