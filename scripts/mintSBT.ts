@@ -13,7 +13,7 @@ export async function run(provider: NetworkProvider, args: string[]) {
 
     const sbtCollection = provider.open(SbtCollection.createFromAddress(address));
 
-    const mint = await sbtCollection.sendMintSbt(provider.sender(),{
+    const mint = await sbtCollection.sendMintItem(provider.sender(),{
         value: toNano("0.032"),  // 0.018 for gas ~ 0.02
         amount: toNano("0.014"),  // for gas + 0.01 of storage (usually 0.05)
         itemIndex: 0,// needs to be deleted 

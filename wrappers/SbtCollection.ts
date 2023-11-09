@@ -62,7 +62,7 @@ export class SbtCollection implements Contract {
         });
     }
 
-    async sendMintSbt(provider: ContractProvider, via: Sender,
+    async sendMintItem(provider: ContractProvider, via: Sender,
         opts: {
             value: bigint;
             queryId: number;
