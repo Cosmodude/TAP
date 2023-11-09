@@ -160,7 +160,7 @@ slice get_sbt_address_by_index(int index) method_id {
      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
 }
 
-cell get_sbt_content(int index, cell individual_sbt_content) method_id {  ;; ??? content
+cell get_nft_content(int index, cell individual_sbt_content) method_id {  ;; ??? content
   return (begin_cell()
   ;;prefix already incoded in 
                       ;;.store_uint(1, 8) ;; offchain tag https://github.com/ton-blockchain/TIPs/issues/64
