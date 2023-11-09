@@ -63,7 +63,7 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
             .store_uint(4 + 2 + 1, 1 + 4 + 4 + 64 + 32 + 1 + 1 + 1)
             .store_ref(state_init)
             .store_ref(sbt_content);
-  send_raw_message(msg.end_cell(), 1); ;; pay transfer fees separately, revert on errors
+  send_raw_message(msg.end_cell(), 64); ;; pay transfer fees separately, revert on errors
 }
 
 ;; Send royalty parameters
@@ -161,7 +161,6 @@ slice get_sbt_address_by_index(int index) method_id {
 }
 
 cell get_sbt_content(int index, cell individual_sbt_content) method_id {  ;; ??? content
-  var (_, _, content, _, _) = load_data();
   return (begin_cell()
   ;;prefix already incoded in 
                       ;;.store_uint(1, 8) ;; offchain tag https://github.com/ton-blockchain/TIPs/issues/64
