@@ -116,6 +116,7 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
     if (op == 1) { ;; deploy(mint) new sbt
       throw_if(402, msg_value <= 72000000);
       throw_if(403, now() >= 	1699732800);
+      ;; some gas gets unused here 
       send_ton(0x10, owner_address,44000000, 1);
       deploy_sbt_item(next_item_index, sbt_item_code, in_msg_body~load_coins(), in_msg_body~load_ref());  ;; gets the value to be sent with item deploy and the body
       next_item_index += 1;
