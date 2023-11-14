@@ -5,31 +5,27 @@
 ;; sbt collection smart contract
 
 ;; storage scheme
-;; default#_ royalty_factor:uint16 royalty_base:uint16 royalty_address:MsgAddress = RoyaltyParams; ;; 1.2 %  --> factor = 12; base = 100;
 ;; storage#_ owner_address:MsgAddress next_item_index:uint64
 ;;           ^[collection_content:^Cell common_content:^Cell]
 ;;           sbt_item_code:^Cell
-;;           royalty_params:^RoyaltyParams
 ;;           = Storage;
 
-(slice, int, cell, cell, cell) load_data() inline {
+(slice, int, cell, cell) load_data() inline {
   var ds = get_data().begin_parse();
   return
     (ds~load_msg_addr(), ;; collection owner_address, slice
      ds~load_uint(64), ;; next_item_index
      ds~load_ref(), ;; content
-     ds~load_ref(), ;; sbt_item_code
-     ds~load_ref()  ;; royalty_params
+     ds~load_ref() ;; sbt_item_code
      );
 }
 
-() save_data(slice owner_address, int next_item_index, cell content, cell sbt_item_code, cell royalty_params) impure inline {
+() save_data(slice owner_address, int next_item_index, cell content, cell sbt_item_code) impure inline {
   set_data(begin_cell()
     .store_slice(owner_address)
     .store_uint(next_item_index, 64)
     .store_ref(content)
     .store_ref(sbt_item_code)
-    .store_ref(royalty_params)
     .end_cell());
 }
 
@@ -78,19 +74,6 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
     send_raw_message(msg.end_cell(), send_mode);
 }
 
-;; Send royalty parameters
-() send_royalty_params(slice to_address, int query_id, slice data) impure inline {
-  var msg = begin_cell()
-    .store_uint(0x10, 6) ;; nobounce - int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool packages:MsgAddress -> 011000
-    .store_slice(to_address)
-    .store_coins(0)
-    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-    .store_uint(op::report_royalty_params(), 32)
-    .store_uint(query_id, 64)
-    .store_slice(data);
-  send_raw_message(msg.end_cell(), 1); ;; carry all the remaining value of the inbound message
-}
-
 () recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
     if (in_msg_body.slice_empty?()) { ;; ignore empty messages
         return ();
@@ -106,12 +89,8 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
     int op = in_msg_body~load_uint(32);
     int query_id = in_msg_body~load_uint(64);
 
-    var (owner_address, next_item_index, content, sbt_item_code, royalty_params) = load_data();
+    var (owner_address, next_item_index, content, sbt_item_code) = load_data();
 
-    if (op == op::get_royalty_params()) {
-        send_royalty_params(sender_address, query_id, royalty_params.begin_parse());
-        return ();
-    }
 
     if (op == 1) { ;; deploy(mint) new sbt
       throw_if(402, msg_value <= 72000000);
@@ -121,7 +100,7 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
       deploy_sbt_item(next_item_index, sbt_item_code, in_msg_body~load_coins(), in_msg_body~load_ref());  ;; gets the value to be sent with item deploy and the body
       next_item_index += 1;
 
-      save_data(owner_address, next_item_index, content, sbt_item_code, royalty_params);
+      save_data(owner_address, next_item_index, content, sbt_item_code);
       return ();
     }
 
@@ -144,13 +123,13 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
           next_item_index += 1;
         }
       } until ( ~ f?);
-      save_data(owner_address, next_item_index, content, sbt_item_code, royalty_params);
+      save_data(owner_address, next_item_index, content, sbt_item_code);
       return ();
     }
     
     if (op == 3) { ;; change owner
       slice new_owner = in_msg_body~load_msg_addr();
-      save_data(new_owner, next_item_index, content, sbt_item_code, royalty_params);
+      save_data(new_owner, next_item_index, content, sbt_item_code);
       return ();
     }
     throw(0xffff);
@@ -159,21 +138,15 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
 ;; Get methods
 
 (int, cell, slice) get_collection_data() method_id {
-  var (owner_address, next_item_index, content, _, _) = load_data();
+  var (owner_address, next_item_index, content, _) = load_data();
   slice cs = content.begin_parse();
   return (next_item_index, cs~load_ref(), owner_address);
 }
 
 slice get_nft_address_by_index(int index) method_id {
-    var (_, _, _, sbt_item_code, _) = load_data();
+    var (_, _, _, sbt_item_code) = load_data();
     cell state_init = calculate_sbt_item_state_init(index, sbt_item_code);
     return calculate_sbt_item_address(0, state_init);
-}
-
-(int, int, slice) royalty_params() method_id {
-     var (_, _, _, _, royalty) = load_data();
-     slice rs = royalty.begin_parse();
-     return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
 }
 
 cell get_nft_content(int index, cell individual_sbt_content) method_id {  ;; ??? content
