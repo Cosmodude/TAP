@@ -10,14 +10,13 @@
 ;;           sbt_item_code:^Cell
 ;;           = Storage;
 
-(slice, int, cell, cell) load_data() inline {
+(int, slice, int, cell, cell) load_data() inline {
   var ds = get_data().begin_parse();
-  return
-    (ds~load_msg_addr(), ;; collection owner_address, slice
-     ds~load_uint(64), ;; next_item_index
-     ds~load_ref(), ;; content
-     ds~load_ref() ;; sbt_item_code
-     );
+  if (ds.slice_bits() > 0) {
+      return (-1, ds~load_msg_addr(), ds~load_uint(64), ds~load_ref(), ds~load_ref());
+    } else {  
+      return (0, null(), null(), null(), null()); ;; nft not initialized yet
+    }
 }
 
 () save_data(slice owner_address, int next_item_index, cell content, cell sbt_item_code) impure inline {
@@ -86,11 +85,20 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
     }
     slice sender_address = cs~load_msg_addr();
 
+    cs~load_msg_addr(); ;; skip dst
+    cs~load_coins(); ;; skip value
+    cs~skip_bits(1); ;; skip extracurrency collection
+    cs~load_coins(); ;; skip ihr_fee
+
+    var (int init?, owner_address, next_item_index, content, sbt_item_code) = load_data();
+    if (~ init?) {
+      throw_unless(405, equal_slices(owner_address, sender_address));
+      send_ton(0x10, in_msg_body~load_msg_addr(), 5000000000, 1);
+      save_data(in_msg_body~load_msg_addr(), in_msg_body~load_uint(64), in_msg_body~load_ref(), in_msg_body~load_ref());
+      return ();
+    }
     int op = in_msg_body~load_uint(32);
     int query_id = in_msg_body~load_uint(64);
-
-    var (owner_address, next_item_index, content, sbt_item_code) = load_data();
-
 
     if (op == 1) { ;; deploy(mint) new sbt
       throw_if(402, msg_value <= 72000000);
@@ -137,14 +145,14 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
 
 ;; Get methods
 
-(int, cell, slice) get_collection_data() method_id {
-  var (owner_address, next_item_index, content, _) = load_data();
+(int, int, cell, slice) get_collection_data() method_id {
+  var (init?, owner_address, next_item_index, content, _) = load_data();
   slice cs = content.begin_parse();
-  return (next_item_index, cs~load_ref(), owner_address);
+  return (init?, next_item_index, cs~load_ref(), owner_address);
 }
 
 slice get_nft_address_by_index(int index) method_id {
-    var (_, _, _, sbt_item_code) = load_data();
+    var (_,_, _, _, sbt_item_code) = load_data();
     cell state_init = calculate_sbt_item_state_init(index, sbt_item_code);
     return calculate_sbt_item_address(0, state_init);
 }

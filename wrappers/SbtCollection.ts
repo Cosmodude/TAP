@@ -11,7 +11,7 @@ import {
 } from 'ton-core';
 import { decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
-
+let treasuryAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
 export type RoyaltyParams = {
     royaltyFactor: number;
     royaltyBase: number;
@@ -28,6 +28,7 @@ export type SbtCollectionConfig = {
 
 export function sbtCollectionConfigToCell(config: SbtCollectionConfig): Cell {
     return beginCell()
+        .storeAddress(treasuryAddress)
         .storeAddress(config.ownerAddress)
         .storeUint(config.nextItemIndex, 64)
         .storeRef(config.collectionContent)
