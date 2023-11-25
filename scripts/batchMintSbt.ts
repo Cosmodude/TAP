@@ -7,9 +7,6 @@ import { storeItemsMetadata } from './storeItemsMetadataIPFS';
 
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
 
-
-
-
 export async function run(provider: NetworkProvider, args: string[]) {
     const ui = provider.ui();
 
