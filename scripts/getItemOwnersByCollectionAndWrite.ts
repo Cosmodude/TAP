@@ -19,7 +19,7 @@ async function fetchItemsByAddress(collectionAddress: string) {
         TONAPI_URL + "/v2/nfts/collections/" + collectionAddress + "/items",
         {   
             params: {
-                limit: 300,
+                limit: 700,
             },
             headers: {
                 Authorization: 'Bearer ' + env.TONAPI_KEY,

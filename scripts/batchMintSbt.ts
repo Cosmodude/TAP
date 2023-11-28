@@ -1,7 +1,7 @@
 import { Address, toNano } from 'ton-core';
 import { NetworkProvider, sleep } from '@ton-community/blueprint';
 import { SbtCollection } from '../wrappers/SbtCollection';
-import { CreateJsonsGetAddreses } from '../createSBTContent';
+
 import { storeItemsMetadata } from './storeItemsMetadataIPFS';
 
 
