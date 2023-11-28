@@ -17,6 +17,23 @@ function readFile(name: string): string[] {
 
 let form = readForm("Form");
 form = [...new Set(form)];
+let tickets = readFile("Tickets");
+tickets = [...new Set(tickets)];
+console.log("Tickets Length: ", tickets.length);
+
+let ticketAndForm = [];
+// filter for tickets
+for(let i = 0; i <form.length; i++ ){
+    for(let j = 0; j< tickets.length; j++){
+      if(Address.parse(form[i]).equals(Address.parse(tickets[j]))){
+        ticketAndForm.push(form[i]);
+        break;
+      }
+    }
+}
+
+console.log("Tickets and Form ", ticketAndForm.length)
+form = ticketAndForm;
 //same result
 // form = form.filter(function(item, pos, self) {
 //     return self.indexOf(item) == pos;
