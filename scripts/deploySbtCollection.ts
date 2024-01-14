@@ -4,10 +4,11 @@ import { compile, NetworkProvider } from '@ton-community/blueprint';
 import { buildCollectionContentCell} from '../wrappers/contentHelpers/offchain';
 
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
-
+let end: bigint =  1707873983n; // 14.02.2024
 export async function run(provider: NetworkProvider) {
     const sbtCollection = provider.open(SbtCollection.createFromConfig({
     ownerAddress: myAddress,
+    mint_end: end,
     nextItemIndex: 0,
     collectionContent: buildCollectionContentCell({
         collectionContent: 'https://raw.githubusercontent.com/Cosmodude/TAP/main/Hack-Ton-Berfest_collection.json',  // collection metadata

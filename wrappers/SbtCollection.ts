@@ -20,6 +20,7 @@ export type RoyaltyParams = {
 
 export type SbtCollectionConfig = {
     ownerAddress: Address;
+    mint_end: bigint;
     nextItemIndex: number;
     collectionContent: Cell;
     sbtItemCode: Cell;
@@ -30,6 +31,7 @@ export function sbtCollectionConfigToCell(config: SbtCollectionConfig): Cell {
     return beginCell()
         .storeAddress(treasuryAddress)
         .storeAddress(config.ownerAddress)
+        .storeUint(config.mint_end, 256)
         .storeUint(config.nextItemIndex, 64)
         .storeRef(config.collectionContent)
         .storeRef(config.sbtItemCode)
@@ -134,13 +136,15 @@ export class SbtCollection implements Contract {
             }
 
 
-    async getCollectionData(provider: ContractProvider): Promise<{nextItemId: number, ownerAddress: Address, collectionContent: string}>{
+    async getCollectionData(provider: ContractProvider): Promise<{mint_end: bigint, nextItemId: number, ownerAddress: Address, collectionContent: string}>{
         const collectionData = await provider.get("get_collection_data", []);
         const stack = collectionData.stack;
+        let mint_end: bigint = stack.readBigNumber();
         let nextItem: bigint = stack.readBigNumber();
         let collectionContent: Cell = stack.readCell();
         let ownerAddress: Address = stack.readAddress();
         return {
+            mint_end: mint_end,
             nextItemId: Number(nextItem), 
             ownerAddress: ownerAddress,
             collectionContent: decodeOffChainContent(collectionContent),
