@@ -105,6 +105,7 @@ export class SbtCollection implements Contract {
                 amount: bigint;
             }
             ) {
+                if(opts.itemOwnerAddresses.length != opts.itemsContent.length ){ throw new TypeError("Addresses and Content arrays don't match!")}
                 let deployList = Dictionary.empty();
                 for(let i = 0; i < opts.itemsContent.length; i++){
                     const sbtContent = encodeOffChainContent(opts.itemsContent[i]);
@@ -131,6 +132,7 @@ export class SbtCollection implements Contract {
                     .endCell()
                 })
             }
+
 
     async getCollectionData(provider: ContractProvider): Promise<{nextItemId: number, ownerAddress: Address, collectionContent: string}>{
         const collectionData = await provider.get("get_collection_data", []);
