@@ -53,7 +53,7 @@ describe('SbtCollection', () => {
         const data = await sbtCollection.getCollectionData();
         expect(data.ownerAddress).toEqualAddress(deployer.address);
         expect(data.nextItemIndex).toEqual(0);
-        console.log(data)
+        //console.log(data)
     });
 
     it('should deploy', async () => {
@@ -73,6 +73,9 @@ describe('SbtCollection', () => {
             queryId: Date.now()
         });
         expect(mint.events.at(-1)?.type).toMatch("account_created");
+        const data = await sbtCollection.getCollectionData();
+        expect(data.ownerAddress).toEqualAddress(deployer.address);
+        expect(data.nextItemIndex).toEqual(1);
         //console.log("Mint: ", mint.events)
 
     });
@@ -87,7 +90,11 @@ describe('SbtCollection', () => {
             authorityAddress: myAddress,
             queryId: Date.now()
         });
-        console.log(mint.transactions)
+
+        const data = await sbtCollection.getCollectionData();
+        expect(data.ownerAddress).toEqualAddress(deployer.address);
+        expect(data.nextItemIndex).toEqual(2);
+        //console.log(mint.transactions)
     })
 
 });

@@ -1,7 +1,7 @@
 import { Blockchain, SandboxContract } from '@ton/sandbox';
 import { Cell, toNano } from '@ton/core';
 import { SbtItem } from '../wrappers/SbtItem';
-import '@ton-community/test-utils';
+import '@ton/test-utils';
 import { compile } from '@ton/blueprint';
 
 describe('SbtItem', () => {
