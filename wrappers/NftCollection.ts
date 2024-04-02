@@ -7,7 +7,7 @@ import {
     ContractProvider, 
     Sender, 
     SendMode, 
-} from 'ton-core';
+} from '@ton/core';
 import { buildCollectionContentCell, decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
 
 export type RoyaltyParams = {

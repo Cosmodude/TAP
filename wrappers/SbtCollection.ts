@@ -8,7 +8,7 @@ import {
     Dictionary, 
     Sender, 
     SendMode, 
-} from 'ton-core';
+} from '@ton/core';
 import { decodeOffChainContent, encodeOffChainContent } from './contentHelpers/offchain';
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
 let treasuryAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
@@ -136,16 +136,14 @@ export class SbtCollection implements Contract {
             }
 
 
-    async getCollectionData(provider: ContractProvider): Promise<{mint_end: bigint, nextItemId: number, ownerAddress: Address, collectionContent: string}>{
+    async getCollectionData(provider: ContractProvider): Promise<{ nextItemIndex: number, ownerAddress: Address, collectionContent: string}>{
         const collectionData = await provider.get("get_collection_data", []);
         const stack = collectionData.stack;
-        let mint_end: bigint = stack.readBigNumber();
         let nextItem: bigint = stack.readBigNumber();
         let collectionContent: Cell = stack.readCell();
         let ownerAddress: Address = stack.readAddress();
         return {
-            mint_end: mint_end,
-            nextItemId: Number(nextItem), 
+            nextItemIndex: Number(nextItem), 
             ownerAddress: ownerAddress,
             collectionContent: decodeOffChainContent(collectionContent),
         };
