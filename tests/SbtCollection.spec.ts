@@ -1,8 +1,8 @@
-import { Blockchain, SandboxContract, TreasuryContract } from '@ton-community/sandbox';
-import { Cell, toNano, Address } from 'ton-core';
+import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
+import { Cell, toNano, Address } from '@ton/core';
 import { SbtCollection } from '../wrappers/SbtCollection';
-import '@ton-community/test-utils';
-import { compile } from '@ton-community/blueprint';
+import '@ton/test-utils';
+import { compile } from '@ton/blueprint';
 import { buildCollectionContentCell} from '../wrappers/contentHelpers/offchain';
 
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
@@ -26,6 +26,7 @@ describe('SbtCollection', () => {
 
         sbtCollection = await blockchain.openContract(SbtCollection.createFromConfig({
             ownerAddress: deployer.address,
+            mint_end: 1712705479n,
             nextItemIndex: 0,
             collectionContent: buildCollectionContentCell({
                 collectionContent: 'https://raw.githubusercontent.com/TonAttendanceProtocol/Smart_Contracts/main/sampleCollectionMetadata.json',  // collection metadata
@@ -50,7 +51,9 @@ describe('SbtCollection', () => {
         //console.log(deployResult.events)
 
         const data = await sbtCollection.getCollectionData();
-        //console.log(data)
+        expect(data.ownerAddress).toEqualAddress(deployer.address);
+        expect(data.nextItemIndex).toEqual(0);
+        console.log(data)
     });
 
     it('should deploy', async () => {
@@ -60,8 +63,8 @@ describe('SbtCollection', () => {
 
     it('should mint SBT item', async () => {
 
-        const mint = await sbtCollection.sendMintSbt(deployer.getSender(), {
-            value: toNano("0.03"),  // 0.015 for gas ~ 0.02
+        const mint = await sbtCollection.sendMintItem(deployer.getSender(), {
+            value: toNano("0.5"),  // 0.015 for gas ~ 0.02
             amount: toNano("0.014"),  // for gas + 0.01 of storage (usually 0.05)
             itemIndex: 0,
             itemOwnerAddress: user.address,
