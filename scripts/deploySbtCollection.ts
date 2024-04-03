@@ -1,10 +1,10 @@
-import { Address, beginCell, toNano } from 'ton-core';
+import { Address, beginCell, toNano } from '@ton/core';
 import { SbtCollection } from '../wrappers/SbtCollection';
-import { compile, NetworkProvider } from '@ton-community/blueprint';
+import { compile, NetworkProvider } from '@ton/blueprint';
 import { buildCollectionContentCell} from '../wrappers/contentHelpers/offchain';
 
 let myAddress: Address = Address.parse("kQAXUIBw-EDVtnCxd65Z2M21KTDr07RoBL6BYf-TBCd6dTBu");
-let end: bigint =  1707873983n; // 14.02.2024
+let end: bigint =  1964537612n; // 14.02.2024
 export async function run(provider: NetworkProvider) {
     const sbtCollection = provider.open(SbtCollection.createFromConfig({
     ownerAddress: myAddress,

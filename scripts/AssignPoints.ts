@@ -1,4 +1,4 @@
-import { Address, toNano, Dictionary } from 'ton-core';
+import { Address, toNano, Dictionary } from '@ton/core';
 import * as fs from 'fs';
 
 function readForm(name: string): string[] {
