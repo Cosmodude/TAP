@@ -154,10 +154,10 @@ slice calculate_sbt_item_address(int wc, cell state_init) {
 
 ;; Get methods
 
-(int, int, cell, slice) get_collection_data() method_id {
-  var (init?, _, owner_address, _, next_item_index, content, _) = load_data();
+(int, cell, slice) get_collection_data() method_id {
+  var (_, _, owner_address, _, next_item_index, content, _) = load_data();
   slice cs = content.begin_parse();
-  return (init?, next_item_index, cs~load_ref(), owner_address);
+  return (next_item_index, cs~load_ref(), owner_address);
 }
 
 slice get_nft_address_by_index(int index) method_id {
