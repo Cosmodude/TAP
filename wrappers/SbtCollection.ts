@@ -139,7 +139,6 @@ export class SbtCollection implements Contract {
     async getCollectionData(provider: ContractProvider): Promise<{ nextItemIndex: number, ownerAddress: Address, collectionContent: string}>{
         const collectionData = await provider.get("get_collection_data", []);
         const stack = collectionData.stack;
-        let init: bigint = stack.readBigNumber();
         let nextItem: bigint = stack.readBigNumber();
         let collectionContent: Cell = stack.readCell();
         let ownerAddress: Address = stack.readAddress();
